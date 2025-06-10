@@ -15,8 +15,9 @@ public class StockService {
         this.stockRepository = stockRepository;
     }
 
-    @Transactional
-    public void decrease(Long id, Long quantity) {
+//    @Transactional
+    public synchronized void decrease(Long id, Long quantity) {
+        // synchronized를 사용하면 해당 메소드는 하나의 스레드만 접근 가능
         Stock stock = stockRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         stock.decrease(quantity);
 
