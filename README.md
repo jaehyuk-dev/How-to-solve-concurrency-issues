@@ -155,7 +155,7 @@ docker run --name redis-container -d -p 6379:6379 redis
 
 - 동시성 이슈가 발생하는 상황과 원인  
 - Java의 `synchronized`를 이용한 동시성 제어  
-- 데이터베이스 Lock을 활용한 동시성 제어 (`Pessimistic`, `Optimistic`)  
+- 데이터베이스 Lock을 활용한 동시성 제어 (`Pessimistic`, `Optimistic`, `NamedLock`)  
 - Redis를 활용한 분산 Lock 구현 (`Lettuce`, `Redisson`)  
 - 각 방법의 장단점과 적용 상황 비교  
 
