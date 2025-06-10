@@ -48,12 +48,15 @@ class StockServiceTest {
         ExecutorService executorService = Executors.newFixedThreadPool(32);
         CountDownLatch countDownLatch = new CountDownLatch(threadCount);
         for (int i = 0; i < threadCount; i++) {
-            try {
-                executorService.execute(() -> stockService.decrease(1L, 1L));
-            } finally {
-                countDownLatch.countDown();
-            }
+            executorService.execute(() -> {
+                try {
+                    stockService.decrease(1L, 1L);
+                } finally {
+                    countDownLatch.countDown(); // 작업 완료 후 카운트다운
+                }
+            });
         }
+
 
         countDownLatch.await();
 
